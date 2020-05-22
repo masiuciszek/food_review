@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {FlatList, Animated} from 'react-native'
 import styled from 'styled-components/native'
 
@@ -47,13 +47,49 @@ const RestaurantText = styled.Text`
   flex: 1;
 `
 
+const SearchInput = styled.TextInput`
+  font-size: 18px;
+  width: 80%;
+  background: #e0e0e0;
+  border: #ddd 2px solid;
+  margin: 10px auto;
+  padding: 10px;
+  box-shadow: 3px 5px rgba(0, 0, 0, 0.2);
+`
+
 const App: React.FC = () => {
+  const [data, setData] = useState(restaurants)
+  const [search, setSearch] = useState<string>('')
+
+  React.useEffect(() => {
+    if (search.length === 0) {
+      setSearch('')
+      setData(restaurants)
+    }
+  }, [data])
+
+  const handleSearch = (text: string) => {
+    setSearch(text)
+    setData((prev) =>
+      prev.filter(
+        (s) =>
+          s.address.toLowerCase().includes(text.toLowerCase()) ||
+          s.name.toLowerCase().includes(text.toLowerCase()),
+      ),
+    )
+  }
+
   return (
     <AppWrapper>
       <Title>Restaurant Review</Title>
+      <SearchInput
+        placeholder="..search"
+        // onChangeText={(text) => setSearch(text)}
+        onChangeText={handleSearch}
+      />
       <Restaurants>
         <FlatList
-          data={restaurants}
+          data={data}
           renderItem={({item, index}) => (
             <>
               <Restaurant index={index}>

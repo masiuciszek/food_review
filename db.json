@@ -1,0 +1,28 @@
+{
+  "restaurants": [
+    {"id": 1, "name": "React Cafe", "address": "123 Anywhere St"},
+    {"id": 2, "name": "Fancy Restaurant", "address": "799 Main St"},
+    {"id": 3, "name": "Taco Place", "address": "550 Maple Rd"},
+    {"id": 4, "name": "Tony's Diner", "address": "4101 College St"},
+    {"id": 5, "name": "Pasta Central", "address": "706 Harper St"},
+    {"id": 6, "name": "Burger Builder", "address": "4869 Hamilton Dr"},
+    {"id": 7, "name": "Pizza Express", "address": "1049 Bird St"},
+    {"id": 8, "name": "Teriyaki To Go", "address": "1885 Tea Berry Lane"},
+    {"id": 9, "name": "Maroon Deli", "address": "1082 Stuart St"},
+    {"id": 10, "name": "Prime Bar and Grill", "address": "1848 Fairfax Dr"},
+    {"id": 11, "name": "Dumpling House", "address": "747 Kelly Dr"},
+    {"id": 12, "name": "Hot Chicken", "address": "1816 Olive St"},
+    {"id": 13, "name": "Luna's Tap Room", "address": "3256 Spirit Dr"},
+    {
+      "id": 14,
+      "name": "Quick Sandwich Shop",
+      "address": "2587 Cherry Ridge Dr"
+    },
+    {"id": 15, "name": "Bobby's Burgers", "address": "4152 Berkley St"},
+    {"id": 16, "name": "Turnpike Diner", "address": "4571 Central Ave"},
+    {"id": 17, "name": "Bombay Express", "address": "65 Queens Lane"},
+    {"id": 18, "name": "Coffee Central", "address": "3228 Oakwood Circle"},
+    {"id": 19, "name": "King's Garden", "address": "2935 Victoria Ct"},
+    {"id": 20, "name": "Salads and More", "address": "2454 Preston St"}
+  ]
+}

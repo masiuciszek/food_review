@@ -26,6 +26,7 @@ const SimpleText = styled.Text`
   padding: 8px;
   color: #42a5f5;
   text-transform: capitalize;
+  text-align: center;
 `
 
 const SearchInput = styled.TextInput<SearchProp>`

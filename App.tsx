@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {FlatList, Platform} from 'react-native'
+import {FlatList, Platform, Text} from 'react-native'
 
 import {Title, AppWrapper, SearchInput} from './src/components/styles/Common'
 import RestaurantRow from './src/components/ResturantRow'
@@ -30,6 +30,7 @@ const restaurants: RestaurantType[] = [
 const App: React.FC = () => {
   const [data, setData] = useState<Array<RestaurantType>>(restaurants)
   const [search, setSearch] = useState<string>('')
+  const [testData, setTestData] = useState([])
 
   React.useEffect(() => {
     if (search.length === 0) {
@@ -54,6 +55,7 @@ const App: React.FC = () => {
       <Title style={Platform.OS === 'ios' ? {color: '#1E88E5'} : {}}>
         Restaurant Review
       </Title>
+
       <SearchInput placeholder="..search" onChangeText={handleSearch} />
 
       <FlatList

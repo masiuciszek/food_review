@@ -20,13 +20,13 @@ const StyledRestaurantRow = styled.View<RestaurantProp>`
   margin: 10px 0;
 `
 const StyledRestaurantRowText = styled.Text`
-  padding: 12px;
+  padding: 16px;
   flex: 1;
   text-align: center;
+  text-align: left;
 `
 const StyledRestaurantRowBtn = styled.TouchableOpacity`
-  min-width: 50px;
-  /* padding: 5px; */
+  min-width: 70px;
   border: 2px solid #42a5f5;
   border-radius: 13px;
 `
@@ -34,10 +34,13 @@ const StyledRestaurantRowBtn = styled.TouchableOpacity`
 const RestaurantRow: React.FC<Props> = ({item, index}) => {
   return (
     <StyledRestaurantRow index={index}>
-      <StyledRestaurantRowText>
-        {index + 1} {item.name}
+      <StyledRestaurantRowText style={{maxWidth: 80}}>
+        {index + 1}
       </StyledRestaurantRowText>
-      <StyledRestaurantRowText>{item.address}</StyledRestaurantRowText>
+      <StyledRestaurantRowText>
+        {item.name} {item.address}
+      </StyledRestaurantRowText>
+
       <StyledRestaurantRowBtn>
         <SimpleText>info</SimpleText>
       </StyledRestaurantRowBtn>

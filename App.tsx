@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {FlatList, Animated} from 'react-native'
+import {FlatList, Animated, Platform} from 'react-native'
 import styled from 'styled-components/native'
 
 type RestaurantType = {
@@ -51,8 +51,9 @@ const SearchInput = styled.TextInput`
   font-size: 18px;
   width: 80%;
   background: #e0e0e0;
-  border: #ddd 2px solid;
-  margin: 10px auto;
+  border: #333332 1px solid;
+  border-radius: 10px;
+  margin: 5px auto 60px auto;
   padding: 10px;
   box-shadow: 3px 5px rgba(0, 0, 0, 0.2);
 `
@@ -81,12 +82,10 @@ const App: React.FC = () => {
 
   return (
     <AppWrapper>
-      <Title>Restaurant Review</Title>
-      <SearchInput
-        placeholder="..search"
-        // onChangeText={(text) => setSearch(text)}
-        onChangeText={handleSearch}
-      />
+      <Title style={Platform.OS === 'ios' ? {color: '#1E88E5'} : {}}>
+        Restaurant Review
+      </Title>
+      <SearchInput placeholder="..search" onChangeText={handleSearch} />
       <Restaurants>
         <FlatList
           data={data}

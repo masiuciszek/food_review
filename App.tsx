@@ -1,62 +1,36 @@
 import React, {useState} from 'react'
-import {FlatList, Animated, Platform} from 'react-native'
-import styled from 'styled-components/native'
+import {FlatList, Animated, Platform, SafeAreaView} from 'react-native'
 
-type RestaurantType = {
-  index: number
-}
+import {
+  Title,
+  AppWrapper,
+  Restaurant,
+  RestaurantText,
+  SearchInput,
+} from './src/components/styles/Common'
+
 const restaurants = [
   {name: 'React Cafe', address: '123 Anywhere St'},
   {name: 'Fancy Restaurant', address: '799 Main St'},
   {name: 'Taco Place', address: '550 Maple Rd'},
+  {name: "Tony's Diner", address: '4101 College St'},
+  {name: 'Pasta Central', address: '706 Harper St'},
+  {name: 'Burger Builder', address: '4869 Hamilton Dr'},
+  {name: 'Pizza Express', address: '1049 Bird St'},
+  {name: 'Teriyaki To Go', address: '1885 Tea Berry Lane'},
+  {name: 'Maroon Deli', address: '1082 Stuart St'},
+  {name: 'Prime Bar and Grill', address: '1848 Fairfax Dr'},
+  {name: 'Dumpling House', address: '747 Kelly Dr'},
+  {name: 'Hot Chicken', address: '1816 Olive St'},
+  {name: "Luna's Tap Room", address: '3256 Spirit Dr'},
+  {name: 'Quick Sandwich Shop', address: '2587 Cherry Ridge Dr'},
+  {name: "Bobby's Burgers", address: '4152 Berkley St'},
+  {name: 'Turnpike Diner', address: '4571 Central Ave'},
+  {name: 'Bombay Express', address: '65 Queens Lane'},
+  {name: 'Coffee Central', address: '3228 Oakwood Circle'},
+  {name: "King's Garden", address: '2935 Victoria Ct'},
+  {name: 'Salads and More', address: '2454 Preston St'},
 ]
-
-const AppWrapper = styled.View`
-  flex: 1;
-  justify-content: center;
-`
-
-const Title = styled.Text`
-  margin-top: 60px;
-  text-align: center;
-  color: #fe9921;
-  font-size: 30px;
-  position: absolute;
-  top: 15px;
-  left: 90px;
-`
-
-const Restaurants = styled.View`
-  padding: 5px;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-`
-const Restaurant = styled.View<RestaurantType>`
-  padding: 5px;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  background: ${(props) => (props.index % 2 === 0 ? '#ccc' : '#fff')};
-`
-
-const RestaurantText = styled.Text`
-  margin: 5px;
-  padding: 5px;
-  font-size: 16px;
-  flex: 1;
-`
-
-const SearchInput = styled.TextInput`
-  font-size: 18px;
-  width: 80%;
-  background: #e0e0e0;
-  border: #333332 1px solid;
-  border-radius: 10px;
-  margin: 5px auto 60px auto;
-  padding: 10px;
-  box-shadow: 3px 5px rgba(0, 0, 0, 0.2);
-`
 
 const App: React.FC = () => {
   const [data, setData] = useState(restaurants)
@@ -86,24 +60,22 @@ const App: React.FC = () => {
         Restaurant Review
       </Title>
       <SearchInput placeholder="..search" onChangeText={handleSearch} />
-      <Restaurants>
-        <FlatList
-          data={data}
-          renderItem={({item, index}) => (
-            <>
-              <Restaurant index={index}>
-                <RestaurantText>
-                  {' '}
-                  {index + 1} {item.name}{' '}
-                </RestaurantText>
 
-                <RestaurantText> {item.address} </RestaurantText>
-              </Restaurant>
-            </>
-          )}
-          keyExtractor={(item) => item.name}
-        />
-      </Restaurants>
+      <FlatList
+        data={data}
+        renderItem={({item, index}) => (
+          <Restaurant index={index}>
+            <RestaurantText>
+              {' '}
+              {index + 1} {item.name}{' '}
+            </RestaurantText>
+
+            <RestaurantText> {item.address} </RestaurantText>
+          </Restaurant>
+        )}
+        keyExtractor={(item) => item.name}
+        initialNumToRender={12}
+      />
     </AppWrapper>
   )
 }

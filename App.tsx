@@ -1,7 +1,10 @@
 import React from 'react'
-import {Text, StyleSheet, FlatList, View} from 'react-native'
+import {FlatList, Animated} from 'react-native'
 import styled from 'styled-components/native'
 
+type RestaurantType = {
+  index: number
+}
 const restaurants = [
   {name: 'React Cafe', address: '123 Anywhere St'},
   {name: 'Fancy Restaurant', address: '799 Main St'},
@@ -29,21 +32,22 @@ const Restaurants = styled.View`
   justify-content: center;
   align-items: center;
 `
-const Restaurant = styled.View`
+const Restaurant = styled.View<RestaurantType>`
   padding: 5px;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  background: ${(props) => (props.index % 2 === 0 ? '#ccc' : '#fff')};
 `
 
 const RestaurantText = styled.Text`
   margin: 5px;
   padding: 5px;
-  font-size: 17px;
+  font-size: 16px;
   flex: 1;
 `
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <AppWrapper>
       <Title>Restaurant Review</Title>
@@ -52,7 +56,7 @@ const App = () => {
           data={restaurants}
           renderItem={({item, index}) => (
             <>
-              <Restaurant>
+              <Restaurant index={index}>
                 <RestaurantText>
                   {' '}
                   {index + 1} {item.name}{' '}

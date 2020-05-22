@@ -1,7 +1,4 @@
 import styled from 'styled-components/native'
-type RestaurantType = {
-  index: number
-}
 
 interface SearchProp {
   marginTop?: number
@@ -24,19 +21,11 @@ const Title = styled.Text`
   /* left: 90px; */
 `
 
-const Restaurant = styled.View<RestaurantType>`
-  padding: 5px;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  background: ${(props) => (props.index % 2 === 0 ? '#ccc' : '#fff')};
-`
-
-const RestaurantText = styled.Text`
-  margin: 5px;
-  padding: 5px;
-  font-size: 16px;
-  flex: 1;
+const SimpleText = styled.Text`
+  font-size: 17px;
+  padding: 8px;
+  color: #42a5f5;
+  text-transform: capitalize;
 `
 
 const SearchInput = styled.TextInput<SearchProp>`
@@ -52,4 +41,4 @@ const SearchInput = styled.TextInput<SearchProp>`
     props.marginTop ? `${props.marginTop.toString()}px` : '10px'};
 `
 
-export {Title, AppWrapper, Restaurant, RestaurantText, SearchInput}
+export {Title, AppWrapper, SearchInput, SimpleText}

@@ -1,15 +1,10 @@
 import React, {useState} from 'react'
-import {FlatList, Animated, Platform, SafeAreaView} from 'react-native'
+import {FlatList, Platform} from 'react-native'
 
-import {
-  Title,
-  AppWrapper,
-  Restaurant,
-  RestaurantText,
-  SearchInput,
-} from './src/components/styles/Common'
+import {Title, AppWrapper, SearchInput} from './src/components/styles/Common'
+import RestaurantRow from './src/components/ResturantRow'
 
-const restaurants = [
+const restaurants: RestaurantType[] = [
   {name: 'React Cafe', address: '123 Anywhere St'},
   {name: 'Fancy Restaurant', address: '799 Main St'},
   {name: 'Taco Place', address: '550 Maple Rd'},
@@ -33,7 +28,7 @@ const restaurants = [
 ]
 
 const App: React.FC = () => {
-  const [data, setData] = useState(restaurants)
+  const [data, setData] = useState<Array<RestaurantType>>(restaurants)
   const [search, setSearch] = useState<string>('')
 
   React.useEffect(() => {
@@ -64,14 +59,7 @@ const App: React.FC = () => {
       <FlatList
         data={data}
         renderItem={({item, index}) => (
-          <Restaurant index={index}>
-            <RestaurantText>
-              {' '}
-              {index + 1} {item.name}{' '}
-            </RestaurantText>
-
-            <RestaurantText> {item.address} </RestaurantText>
-          </Restaurant>
+          <RestaurantRow item={item} index={index} />
         )}
         keyExtractor={(item) => item.name}
         initialNumToRender={12}

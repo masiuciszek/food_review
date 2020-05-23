@@ -1,0 +1,6 @@
+module Pods_FoodReview_FoodReviewTests {
+  umbrella header "Pods-FoodReview-FoodReviewTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

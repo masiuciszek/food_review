@@ -12,7 +12,7 @@ const AppWrapper = styled.View`
 
 const Title = styled.Text`
   margin-top: 60px;
-  margin-bottom: 60px;
+  margin-bottom: 10px;
   text-align: center;
   font-size: 30px;
   padding: 10px;
@@ -42,4 +42,14 @@ const SearchInput = styled.TextInput<SearchProp>`
     props.marginTop ? `${props.marginTop.toString()}px` : '10px'};
 `
 
-export {Title, AppWrapper, SearchInput, SimpleText}
+const ImageWrapper = styled.View`
+  width: 200px;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+`
+
+const Image = styled.Image``
+
+export {Title, Image, AppWrapper, SearchInput, SimpleText, ImageWrapper}

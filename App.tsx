@@ -1,7 +1,12 @@
 import React, {useState} from 'react'
-import {FlatList, Platform, Text} from 'react-native'
-
-import {Title, AppWrapper, SearchInput} from './src/components/styles/Common'
+import {FlatList, Platform, Text, Image} from 'react-native'
+import image from './src/images/pizze.png'
+import {
+  Title,
+  AppWrapper,
+  SearchInput,
+  ImageWrapper,
+} from './src/components/styles/Common'
 import RestaurantRow from './src/components/ResturantRow'
 
 const restaurants: RestaurantType[] = [
@@ -56,6 +61,9 @@ const App: React.FC = () => {
         Restaurant Review
       </Title>
 
+      <ImageWrapper>
+        <Image style={{width: 50, height: 50}} source={image} />
+      </ImageWrapper>
       <SearchInput placeholder="..search" onChangeText={handleSearch} />
 
       <FlatList

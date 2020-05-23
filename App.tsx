@@ -10,7 +10,7 @@ import {
 import RestaurantRow from './src/components/ResturantRow'
 
 const App: React.FC = () => {
-  const [restaurants, setRestaurants] = useState<Array<RestaurantType | []>>([])
+  const [restaurants, setRestaurants] = useState<Array<RestaurantType>>([])
   const [search, setSearch] = useState<string>('')
 
   React.useEffect(() => {

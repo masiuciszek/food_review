@@ -2,6 +2,10 @@
 import * as React from 'react'
 import styled from 'styled-components/native'
 import {SimpleText} from '../components/styles/Common'
+
+import Icon from 'react-native-vector-icons/FontAwesome'
+import Stars from './Stars'
+
 type RestaurantProp = {
   index: number
 }
@@ -9,6 +13,10 @@ type RestaurantProp = {
 interface Props {
   item: RestaurantType
   index: number
+}
+
+interface RowTextProps {
+  stars?: boolean
 }
 
 const StyledRestaurantRow = styled.View<RestaurantProp>`
@@ -19,11 +27,12 @@ const StyledRestaurantRow = styled.View<RestaurantProp>`
   background: ${(props) => (props.index % 2 === 0 ? '#ccc' : '#ceccde')};
   margin: 10px 0;
 `
-const StyledRestaurantRowText = styled.Text`
+const StyledRestaurantRowText = styled.Text<RowTextProps>`
   padding: 16px;
   flex: 1;
   text-align: center;
   text-align: left;
+  flex-direction: ${(props) => (props.stars ? 'row' : 'column')};
 `
 const StyledRestaurantRowBtn = styled.TouchableOpacity`
   min-width: 70px;
@@ -34,9 +43,7 @@ const StyledRestaurantRowBtn = styled.TouchableOpacity`
 const RestaurantRow: React.FC<Props> = ({item, index}) => {
   return (
     <StyledRestaurantRow index={index}>
-      <StyledRestaurantRowText style={{maxWidth: 80}}>
-        {index + 1}
-      </StyledRestaurantRowText>
+      <Stars rating={item.rating} />
       <StyledRestaurantRowText>
         {item.name} {item.address}
       </StyledRestaurantRowText>

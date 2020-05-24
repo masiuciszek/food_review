@@ -2,14 +2,18 @@ import * as React from 'react'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import styled from 'styled-components/native'
 import { RouteProp } from '@react-navigation/native'
-import { Text, NativeTouchEvent, NativeSyntheticEvent } from 'react-native'
+import { StackNavigationProp } from '@react-navigation/stack'
+import { Text, ActivityIndicator } from 'react-native'
 import { TouchableOpacity, TextInput } from 'react-native-gesture-handler'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import axios from 'axios'
 
 type ReviewScreenRouteProp = RouteProp<RootStackParamList, 'Review'>
+type ReviewScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Review'>
 
 interface Props {
   route: ReviewScreenRouteProp
+  navigation: ReviewScreenNavigationProp
 }
 
 const Title = styled.Text`
@@ -47,18 +51,37 @@ const Stars = styled.View`
 const BtnSubmit = styled.TouchableOpacity`
   margin: 10px auto;
   border: 2px solid #40c4ff;
-  padding: 5px 8px;
-  width: 120px;
+  padding: 12px 8px;
+  width: 280px;
   border-radius: 20px;
 `
 
-const Review: React.FC<Props> = ({ route }) => {
+const Review: React.FC<Props> = ({ route, navigation }) => {
   const { name: restaurantName } = route.params.item
   const { useState } = React
 
   const [name, setName] = useState<string>('')
   const [rating, setRating] = useState<number>(0)
   const [comment, setComment] = useState<string>('')
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
+
+  const handleSubmit = async () => {
+    const submitData = { name, rating, comment }
+    setIsSubmitting(true)
+    const response = await axios({
+      url: 'http://localhost:3000/review',
+      method: 'post',
+      data: submitData,
+    })
+
+    const data = await response.data
+
+    setIsSubmitting(false)
+    setName('')
+    setRating(0)
+    setComment('')
+    navigation.goBack()
+  }
 
   return (
     <KeyboardAwareScrollView style={{ flex: 1, backgroundColor: '#fff' }}>
@@ -77,8 +100,9 @@ const Review: React.FC<Props> = ({ route }) => {
       </Stars>
       <Input placeholder="...Review" multiline={true} numberOfLines={5} style={{ height: 100 }} value={comment} onChangeText={(comment) => setComment(comment)} />
 
-      <BtnSubmit>
-        <Text style={{ textAlign: 'center' }}>Submit</Text>
+      {isSubmitting && <ActivityIndicator size="large" color="#333" />}
+      <BtnSubmit onPress={handleSubmit} disabled={isSubmitting}>
+        <Text style={{ textAlign: 'center', fontSize: 20 }}>Submit</Text>
       </BtnSubmit>
     </KeyboardAwareScrollView>
   )

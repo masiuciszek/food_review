@@ -8,14 +8,16 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import About from './src/screens/About'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Review from './src/screens/Review'
+import { Modal } from 'react-native'
 
 const RootStack = createStackNavigator<RootStackParamList>()
 
 const Tab = createBottomTabNavigator<TabStackParamList>()
 
-function Navigation() {
+function MainNavigation() {
   return (
     <RootStack.Navigator
+      mode="modal"
       initialRouteName="RestaurantList"
       screenOptions={{
         headerStyle: { backgroundColor: '#1976D2' },
@@ -23,8 +25,9 @@ function Navigation() {
       }}
     >
       <RootStack.Screen name="RestaurantList" component={RestaurantList} options={{ headerTitle: 'Restaurant review' }} />
-      <RootStack.Screen name="Restaurant" component={RestaurantInfo} />
+      <RootStack.Screen name="Restaurant" component={RestaurantInfo} options={{ headerTitle: 'Restaurant info' }} />
       <RootStack.Screen name="Review" component={Review} />
+      <RootStack.Screen name="Modal" component={Modal} />
     </RootStack.Navigator>
   )
 }
@@ -34,7 +37,7 @@ const TabNavigation: React.FC = () => {
     <Tab.Navigator initialRouteName="Main">
       <Tab.Screen
         name="Main"
-        component={Navigation}
+        component={MainNavigation}
         options={(props) => {
           return {
             tabBarIcon: (props) => {

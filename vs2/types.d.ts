@@ -10,6 +10,7 @@ type RootStackParamList = {
   RestaurantList: undefined
   Restaurant: { item: RestaurantType }
   Review: { item: RestaurantType }
+  Modal: undefined
 }
 
 type TabStackParamList = {

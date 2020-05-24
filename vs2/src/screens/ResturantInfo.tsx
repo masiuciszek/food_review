@@ -32,7 +32,10 @@ const Text = styled.Text`
   padding: 16px;
 `
 
-const Content = styled.View``
+const Content = styled.View`
+  width: 100%;
+  position: relative;
+`
 const Star = styled.View`
   flex-direction: row;
   padding: 10px;
@@ -40,15 +43,18 @@ const Star = styled.View`
 `
 
 const Btn = styled.TouchableOpacity`
-  margin-right: auto;
   text-transform: capitalize;
   border: 2px solid #40c4ff;
-  border-radius: 12px;
-  margin-top: 25px;
+  border-radius: 20px;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  bottom: 0;
 `
 
 const RestaurantInfo: React.FC<Props> = ({ navigation, route }) => {
-  const { image, name, rating, address } = route.params.item
+  const { image, name, rating, address, id } = route.params.item
+  const restaurant = { image, name, rating, address, id }
 
   const formatRating = (rating: number) => {
     // const stars = Array.from(Array(rating).keys())
@@ -66,18 +72,17 @@ const RestaurantInfo: React.FC<Props> = ({ navigation, route }) => {
 
   return (
     <StyledRestaurant>
-      <Text style={{ fontSize: 30 }}>Restaurant Info</Text>
-      <Wrapper>
-        <Image style={{ width: 100, height: 100, margin: 20 }} source={{ uri: `http://localhost:3000/images/${image}` }} />
-        <Content>
-          <Text>Name: {name}</Text>
-          <Text>Address:{address}</Text>
-
-          {formatRating(rating)}
-        </Content>
-      </Wrapper>
-      <Btn onPress={() => navigation.navigate('Review')}>
-        <Text>Leave A Review</Text>
+      <Image style={{ width: 100, height: 100, margin: 20 }} source={{ uri: `http://localhost:3000/images/${image}` }} />
+      <Content>
+        <Text style={{ marginRight: 'auto' }}>Name: {name}</Text>
+        <Text style={{ marginRight: 'auto' }}>Address:{address}</Text>
+        {formatRating(rating)}
+        <Btn onPress={() => navigation.navigate('Review', { item: restaurant })}>
+          <Text style={{ fontSize: 15, padding: 0 }}>Leave A Review</Text>
+        </Btn>
+      </Content>
+      <Btn onPress={() => navigation.navigate('Modal')}>
+        <Text style={{ fontSize: 15, padding: 0 }}>Test</Text>
       </Btn>
     </StyledRestaurant>
   )

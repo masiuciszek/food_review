@@ -81,9 +81,6 @@ const RestaurantInfo: React.FC<Props> = ({ navigation, route }) => {
           <Text style={{ fontSize: 15, padding: 0 }}>Leave A Review</Text>
         </Btn>
       </Content>
-      <Btn onPress={() => navigation.navigate('Modal')}>
-        <Text style={{ fontSize: 15, padding: 0 }}>Test</Text>
-      </Btn>
     </StyledRestaurant>
   )
 }

@@ -27,7 +27,6 @@ function MainNavigation() {
       <RootStack.Screen name="RestaurantList" component={RestaurantList} options={{ headerTitle: 'Restaurant review' }} />
       <RootStack.Screen name="Restaurant" component={RestaurantInfo} options={{ headerTitle: 'Restaurant info' }} />
       <RootStack.Screen name="Review" component={Review} />
-      <RootStack.Screen name="Modal" component={Modal} />
     </RootStack.Navigator>
   )
 }
